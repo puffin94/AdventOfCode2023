@@ -38,6 +38,7 @@ public class Day1 {
         private String updatedCV;
 
         private String[] numbersAsWords = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        private String[] wordsWithNumbers = {"o1e","t2o","t3e","f4r","f5e","s6x","s7n","e8t","n9e"};
 
         public CalibrationValue(String values) {
             valueString = values;
@@ -84,12 +85,11 @@ public class Day1 {
             return Integer.parseInt(updatedCV);
         }
 
-        // needs modded to pick up the last and first most number when they conflict i.e. twone should be tw1 or v/v
         private String replaceWordsAsNumbers() {
             String replacementValue = valueString;
             for (int i = numbersAsWords.length-1;i>=0 ;i--) {
                 while(replacementValue.contains(numbersAsWords[i])){
-                    replacementValue = replacementValue.replace(numbersAsWords[i],String.valueOf(i+1));
+                    replacementValue = replacementValue.replace(numbersAsWords[i],wordsWithNumbers[i]);
                 }
             }
             return replacementValue;
