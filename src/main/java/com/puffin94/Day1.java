@@ -38,7 +38,7 @@ public class Day1 {
         private String updatedCV;
 
         private String[] numbersAsWords = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-        private String[] wordsWithNumbers = {"o1e","t2o","t3e","f4r","f5e","s6x","s7n","e8t","n9e"};
+        private String[] wordsWithNumbers = {"o1e", "t2o", "t3e", "f4r", "f5e", "s6x", "s7n", "e8t", "n9e"};
 
         public CalibrationValue(String values) {
             valueString = values;
@@ -87,9 +87,9 @@ public class Day1 {
 
         private String replaceWordsAsNumbers() {
             String replacementValue = valueString;
-            for (int i = numbersAsWords.length-1;i>=0 ;i--) {
-                while(replacementValue.contains(numbersAsWords[i])){
-                    replacementValue = replacementValue.replace(numbersAsWords[i],wordsWithNumbers[i]);
+            for (int i = numbersAsWords.length - 1; i >= 0; i--) {
+                while (replacementValue.contains(numbersAsWords[i])) {
+                    replacementValue = replacementValue.replace(numbersAsWords[i], wordsWithNumbers[i]);
                 }
             }
             return replacementValue;
