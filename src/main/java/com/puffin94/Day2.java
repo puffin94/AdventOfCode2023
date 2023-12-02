@@ -9,12 +9,14 @@ public class Day2 {
     public static void main(String[] args) {
 
         ArrayList<Game> successfulGames = new ArrayList<>();
+        ArrayList<Game> allGames = new ArrayList<>();
         try {
             FileReader fr = new FileReader("src/main/resources/challengeInputs/day2.txt");
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
                 Game game = new Game(line,12,14,13);
+                allGames.add(game);
                 if(game.isPossible){
                     successfulGames.add(game);
                 }
@@ -28,8 +30,13 @@ public class Day2 {
         for (Game game:successfulGames){
             sumOfSuccessfulGames+=game.getGameNumber();
         }
+        int sumOfGamePowers = 0;
+        for(Game game:allGames){
+            sumOfGamePowers += game.gamePower;
+        }
 
         System.out.println("Sum of Successful Games: "+sumOfSuccessfulGames);
+        System.out.println("Sum of Game Powers: "+sumOfGamePowers);
     }
 
     static class Game {
@@ -39,6 +46,10 @@ public class Day2 {
         int redCubes;
         int blueCubes;
         int greenCubes;
+        int minRed=0;
+        int minBlue=0;
+        int minGreen=0;
+        int gamePower=0;
 
         public Game(String gameString, int redCubes, int blueCubes, int greenCubes) {
             this.gameString = gameString;
@@ -69,7 +80,9 @@ public class Day2 {
                     redValue = Integer.parseInt(value);
                     if (redValue>redCubes){
                         isPossible = false;
-                        break;
+                    }
+                    if(redValue>minRed){
+                        minRed = redValue;
                     }
                 }
                 if (value.contains("blue")) {
@@ -77,7 +90,9 @@ public class Day2 {
                     blueValue = Integer.parseInt(value);
                     if (blueValue>blueCubes){
                         isPossible = false;
-                        break;
+                    }
+                    if(blueValue>minBlue){
+                        minBlue = blueValue;
                     }
                 }
                 if (value.contains("green")) {
@@ -85,11 +100,14 @@ public class Day2 {
                     greenValue = Integer.parseInt(value);
                     if (greenValue>greenCubes){
                         isPossible = false;
-                        break;
+                    }
+                    if(greenValue>minGreen){
+                        minGreen=greenValue;
                     }
                 }
 
             }
+            gamePower = minBlue*minGreen*minRed;
         }
         public Integer getGameNumber(){
             return Integer.parseInt(gameNumber);
