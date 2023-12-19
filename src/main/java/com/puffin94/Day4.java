@@ -57,6 +57,7 @@ public class Day4 {
         int copyCount = 0;
         for (int i = 0; i < cardList.size(); i++) {
             Card card = cardList.get(i);
+            copyCount+= card.getCopyCount();
             if (card.getNumberOfWinners() > 0) {
                 for (int j = 0; j < card.getCopyCount(); j++) {
                     for (int l = 0; l < card.getNumberOfWinners(); l++) {
@@ -64,10 +65,6 @@ public class Day4 {
                     }
                 }
             }
-        }
-
-        for (Card card : cardList) {
-            copyCount += card.getCopyCount();
         }
         return copyCount;
     }
